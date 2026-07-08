@@ -1,9 +1,14 @@
 ANSIBLE:
 
 1. INSTALL ANSIBLE ON CONTROL/ MASTER SERVER
+sudo yum install ansible
 2. SETUP SSH PASSWORD LESS AUTHENTICATION TO ALL WORKER NODES / CLIENT SERVERS
-
 ( WATCH CLASS RECORDING FOR DETAILED EXPLANATION- how to generate sshkeys.. etc  ) 
+set hostname using sudo hostnamectl set-hostname <name>
+generate ssh keys using ssh-keygen
+copy the id-rsa public key from master node (/opt/.ssh folder) to worker nodes destination folder (/opt/.ssh/authorized keys)
+check ssh connection using ssh -i id-rsa ec2-user@x.x.x.x or ssh x.x.x.x
+
 
 =============================================================================================
 SETUP ANSIBLE PRATICE FOLDER AND CREATE A Inventory / host file  
@@ -75,7 +80,7 @@ ansible all -m user -b -a "state=present name=mounika2 "
 ansible all -m copy -b -a "src=path/of/file dest=/path"
 
 ansible all -m yum -b -a "name=git"
-ansible all -m yum -b -a "name=git state=preasent"
+ansible all -m yum -b -a "name=git state=present"
 
 ansible all -a "yum install git -y" -b
 ansible all -b -a "yum install git -y"
